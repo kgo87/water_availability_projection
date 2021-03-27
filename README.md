@@ -18,3 +18,16 @@ The program also provides a comparison of the current and future average values 
  - collections
  - operator
  - zipfile
+
+### Running Locally
+
+* Install [Python](https://www.python.org/downloads/)
+
+
+To run your application locally, run this inside the virtualenv:
+
+```bash
+python earthquake.py start
+```
+
+Your application will be running in your CLI.
