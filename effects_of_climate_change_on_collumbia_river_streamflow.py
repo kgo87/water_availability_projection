@@ -49,7 +49,7 @@ def control_point_streamflow_data(gcm, rcp, downscaling_method, hydrologic_model
     '''
     Given strings of desired gcm, rcp, downscaling method, hydrologic model,
     and control point code, downloads the streamflow data for control point from
-    the internet and returns a filepath to the csv file that matches the model parameters
+    the hydro.washington.edu/CRCC database and returns a filepath to the csv file that matches the model parameters
     '''
     print "Streamflow data will be saved to", path
     retrieve = requests.get('http://hydro.washington.edu/CRCC/site_specific/' + control_point_code)
@@ -63,7 +63,7 @@ def control_point_streamflow_data(gcm, rcp, downscaling_method, hydrologic_model
 
 def extract_desired_data_file(gcm, rcp, downscaling_method, hydrologic_model, control_point_code, filepath, streamflow_or_biascorrected):
     '''
-    Helps control_point_streamflow_data function
+    Helper function for control_point_streamflow_data 
     '''
     zip_ref = zipfile.ZipFile(filepath, 'r')
     zip_ref.extractall(path)
@@ -159,7 +159,7 @@ def average_streamflow(start_year, end_year, csv_filepath, streamflow_or_biascor
 
 def historic_1970_1999(csv_filepath, streamflow_or_biascorrected):
           """
-          Calls average_streamflow() to produce a dictionary of average
+          Calls average_streamflow() function to produce a dictionary of average
           streamflow values for historic period, identified as a period
           from 1970 to 1999
           """
@@ -167,7 +167,7 @@ def historic_1970_1999(csv_filepath, streamflow_or_biascorrected):
 
 def future_2070_2099(csv_filepath, streamflow_or_biascorrected):
           """
-          Calls average_streamflow() to produce a dictionary of average
+          Calls average_streamflow() function to produce a dictionary of average
           streamflow values for historic period, identified as a period
           from 2070 to 2099
           """
@@ -176,7 +176,7 @@ def future_2070_2099(csv_filepath, streamflow_or_biascorrected):
 
 def print_average_streamflow_values(dictionary):
               """
-              Prints the dictionary of average_streamflow_values
+              Prints key value pairs for streamflow data
               """
               for key,value in dictionary.items():
                   print "The average streamflow value for month", key, "equals", round(value, 2), "cfs"
@@ -184,8 +184,8 @@ def print_average_streamflow_values(dictionary):
 
 def print_historic_average_streamflow_values(csv_filepath, streamflow_or_biascorrected):
               """
-              Calls print_average_streamflow_values to print the
-              dictionary of average_streamflow_values for historic period
+              Calls print_average_streamflow_values function to print the
+              key value pairs for streamflow data for the historic period
               """
               print "Streamflow data for historic period:"
               return print_average_streamflow_values(historic_1970_1999(csv_filepath, streamflow_or_biascorrected))
@@ -193,8 +193,8 @@ def print_historic_average_streamflow_values(csv_filepath, streamflow_or_biascor
 
 def print_future_average_streamflow_values(csv_filepath, streamflow_or_biascorrected):
               """
-              Calls print_average_streamflow_values to print the
-              dictionary of average_streamflow_values for future period
+              Calls print_average_streamflow_values function to print the
+              key value pairs for streamflow data for future period
               """
               print "Streamflow data for future period:"
               return print_average_streamflow_values(future_2070_2099(csv_filepath, streamflow_or_biascorrected))
