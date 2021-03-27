@@ -202,12 +202,14 @@ def print_future_average_streamflow_values(csv_filepath, streamflow_or_biascorre
 
 def plot_average_streamflow(csv_filepath, streamflow_or_biascorrected, control_point_code):
               """
-              Produces a plot of the hydrographs for historic and future periods.
+              Prints a plot of the hydrographs for historic and future periods.
               Function returns None.
               """
+              historic_label = '1970-1990 Avg.'
+              future_label = '2070-2099 Avg.'
               plt.clf()
-              plt.plot(*zip(*sorted(historic_1970_1999(csv_filepath, streamflow_or_biascorrected).items())), label = '1970-1990 Avg.')
-              plt.plot(*zip(*sorted(future_2070_2099(csv_filepath, streamflow_or_biascorrected).items())), label = '2070-2099 Avg.')
+              plt.plot(*zip(*sorted(historic_1970_1999(csv_filepath, streamflow_or_biascorrected).items())), label = historic_label)
+              plt.plot(*zip(*sorted(future_2070_2099(csv_filepath, streamflow_or_biascorrected).items())), label = future_label)
               plt.title("Hydrograph for " + control_point_code)
               plt.xlabel("Months")
               plt.ylabel("Streamflow, cfs")
